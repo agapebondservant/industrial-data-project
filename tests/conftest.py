@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Shared test fixtures and helpers for the platform test suite.
-These predate pytest adoption; plain functions called from setUp().
 """
 import os
 import sys
