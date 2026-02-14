@@ -7,9 +7,8 @@ It integrates with SCADA systems, mainframes and other data sources.
 
 INSTALLATION
 
-  1. Unpack the source archive:
-       tar xzf legacy-industrial-platform-2.4.1.tar.gz
-       cd legacy-industrial-platform-2.4.1
+  1. Download and unpack the source archive, then cd into the root directory:
+       cd industrial-data-project
 
   2. Install dependencies:
        pip install -r requirements.txt
