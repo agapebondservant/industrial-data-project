@@ -1,8 +1,0 @@
-schemaVersion: 2.2.0
-metadata:
-  generateName: empty
-projects:
-  - name: industrial-sensor-data-app # A unique name for the project
-    git:
-      uri: https://github.com/agapebondservant/industrial-data-project.git
-      branch: main 
