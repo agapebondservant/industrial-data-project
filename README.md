@@ -1,6 +1,7 @@
 # Industrial Data Platform
 
 This is an industrial sensor data collection and processing platform which supports reporting, email alerts, and a web dashboard.
+
 It integrates with SCADA systems, mainframes and other data sources.
 
 (Forked from <a href="https://github.com/rdwj/py2to3-example-project" target="_blank">this repo</a> authored by Wes Jackson)
