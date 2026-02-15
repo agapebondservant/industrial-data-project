@@ -1,7 +1,5 @@
 # Industrial Data Platform
 
-(Made a change to test auto PR generation)
-
 This is an industrial sensor data collection and processing platform which supports reporting, email alerts, and a web dashboard.
 It integrates with SCADA systems, mainframes and other data sources.
 
