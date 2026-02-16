@@ -1,0 +1,25 @@
+issues:
+  - title: Create Software Documentation 
+    user_story: |
+      As a product manager, I want to be able to track the progress of my team 
+      with creating essential software documentation.
+    acceptance_criteria: |
+      1. There is a Github issue to create each of the following 15 documents:
+      - System Configuration Report
+      - Project Requirements (one-paragraph summary)
+      - Architecture Report
+      - Software Bill of Materials (SBOM)
+      - Vulnerability Report
+      - Code Catalog
+      - Import Analysis
+      - Code Graphs
+      - Dependency Analysis
+      - Migration Path
+      - Functional Requirements Doc
+      - Technical Design Doc
+      - Software Backlog Document
+      - Migration Runbook
+      - Deployment Guide
+      2. The Github issues will be created in the order shown above.
+      3. Each Github issue will capture details about the name of the document, the purpose of the document, 
+      and why the document is useful during code refactoring.
