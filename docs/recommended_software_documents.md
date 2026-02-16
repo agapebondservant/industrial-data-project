@@ -1,15 +1,16 @@
-- System Configuration Report
-- Project Requirements (one-paragraph summary)
-- Architecture Report
-- SBOM
-- Vulnerability Report
-- Code Catalog
-- Import Analysis
-- Code Graphs
-- Dependency Analysis
-- Migration Path
-- Functional Requirements Doc
-- Technical Design Doc
-- Software Backlog Document
-- Migration Runbook
-- Deployment Guide
+issues:
+  - title: System Configuration Report
+  - title: Project Requirements (one-paragraph summary)
+  - title: Architecture Report
+  - title: SBOM
+  - title: Vulnerability Report
+  - Code Catalog
+  - Import Analysis
+  - Code Graphs
+  - Dependency Analysis
+  - Migration Path
+  - Functional Requirements Doc
+  - Technical Design Doc
+  - Software Backlog Document
+  - Migration Runbook
+  - Deployment Guide
