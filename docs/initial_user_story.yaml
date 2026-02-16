@@ -1,0 +1,26 @@
+issues:
+  - title: User Stories Planning
+    user_story: |
+      As a product manager, I want to be able to view a list of user stories
+      that capture the work for this sprint.
+    acceptance_criteria: |
+      1. There is exactly 1 user story for creating each of the following 15 documents:
+      - Project Requirements (one-paragraph summary)
+      - System Configuration Report
+      - Architecture Report
+      - Software Bill of Materials (SBOM)
+      - Vulnerability Report
+      - Code Catalog
+      - Import Analysis
+      - Code Graphs
+      - Dependency Analysis
+      - Migration Path
+      - Functional Requirements Doc
+      - Technical Design Doc
+      - Software Backlog Document
+      - Migration Runbook
+      - Deployment Guide
+      2. Each user story is a structured report that contains the following:
+      **Title**: The title of the user story (ex. "User Story Creation for Wireframe Mockup") 
+      **User Story**: The body of the user story using the Connextra template (ex. "As a UI developer, I want to be able to view wireframe mockups so that I can better understand the structure flow, content placement and other general functionality of the UI.")
+      **Acceptance Criteria**: An outline of the acceptance criteria for the user story
