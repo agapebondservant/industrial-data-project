@@ -5,6 +5,7 @@ Here is a list of documents that should be generated for this sprint:
 - Software Bill of Materials (SBOM)
 - Vulnerability Report
 - Endpoint Catalog
+- Architecture Technical Debt Index
 - Code Catalog
 - Import Analysis
 - Code Graphs
