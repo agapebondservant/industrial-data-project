@@ -1,56 +1,56 @@
-# -*- coding: utf-8 -*-
-"""
-Shared test fixtures and helpers for the platform test suite.
-"""
-import os
-import sys
-import time
-import struct
-
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), os.pardir))
+import csv
+import pytest
 
 
-def make_data_point(tag="TEMP-001", value=23.5, timestamp=None, quality=192):
-    from src.core.types import DataPoint
-    return DataPoint(tag, value, timestamp or time.time(), quality)
+def pytest_addoption(parser):
+    parser.addoption(
+        "--test_data",
+        action="store",
+        default="./tmp/temp/test_data.csv",
+        help='Specify test data file path.'
+    )
+    parser.addoption(
+        "--test_results",
+        action="store",
+        default="./tmp/temp/test_results.csv",
+        help='Specify test results file path.'
+    )
 
 
-def make_sensor_bytes(raw_hex):
-    return raw_hex.decode("hex")
+def pytest_configure(config):
+    config._test_results = []
+    config.addinivalue_line("markers", "refactoring: mark test as target for refactoring.")
 
 
-def make_unicode_tag(base=u"Sensor", suffix=u"\u00b0C"):
-    return base + u"-" + suffix
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
 
+    report = outcome.get_result()
 
-def make_ebcdic_string(text):
-    return text.encode("cp037")
+    if report.when == 'call' or report.failed:
 
+        item.config._test_results.append({
+            "name": item.nodeid,
+            "outcome": report.outcome.upper(),
+            "error": report.longreprtext if report.failed else ""
+        })
 
-def make_comp3_bytes(value, num_bytes=4):
-    digits = "%0*d" % ((num_bytes * 2) - 1, abs(value))
-    sign = "c" if value >= 0 else "d"
-    return (digits + sign).decode("hex")
+def pytest_sessionfinish(session, exitstatus):
+    results = session.config._test_results
 
+    if not results:
 
-def setup_test_environment():
-    print "Setting up test environment"
-    os.environ.setdefault("PLATFORM_ENV", "test")
-    os.environ.setdefault("PLATFORM_HOME", "/tmp/platform_test")
+        return
 
+    keys = results[0].keys()
 
-def teardown_test_environment():
-    print "Tearing down test environment"
-    for key in ("PLATFORM_ENV", "PLATFORM_HOME"):
-        if key in os.environ:
-            del os.environ[key]
+    test_results_path = session.config.getoption("--test_results")
 
+    with open(test_results_path, "w", newline="", encoding="utf-8") as f:
 
-def assert_unicode(tc, value, msg=None):
-    tc.assertIsInstance(value, unicode, msg or "Expected unicode, got %s" % type(value))
+        writer = csv.DictWriter(f, fieldnames=keys)
 
+        writer.writeheader()
 
-def assert_byte_string(tc, value, msg=None):
-    tc.assertIsInstance(value, str, msg or "Expected str, got %s" % type(value))
-    tc.assertNotIsInstance(value, unicode, msg or "Got unicode, expected plain str")
-
+        writer.writerows(results)
