@@ -1,1 +1,1 @@
-The Industrial Data Platform is a comprehensive system designed for collecting and processing industrial sensor data, supporting key features such as reporting, email alerts, and a web dashboard, while integrating with SCADA systems, mainframes, and other data sources to enhance operational efficiency and decision-making.
+The industrial data platform is designed for sensor data collection and processing, supporting reporting, email alerts, and a web dashboard. It integrates with SCADA systems, mainframes, and other data sources.
