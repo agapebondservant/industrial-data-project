@@ -75,7 +75,7 @@ name: "Unit Test CI"
         - name: Merge PR (pass rate ≥ 90%)
           if: steps.stats.outputs.meets_threshold == 'true'
           env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
           run: |
             echo "✅ Pass rate ${{ steps.stats.outputs.pass_rate }}% — merging PR #${{
   github.event.pull_request.number }}..."
@@ -89,7 +89,7 @@ name: "Unit Test CI"
         - name: Request changes (pass rate < 90%)
           if: steps.stats.outputs.meets_threshold == 'false'
           env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
           run: |
             gh pr review "${{ github.event.pull_request.number }}" \
               --request-changes \
