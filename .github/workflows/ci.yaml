@@ -10,6 +10,10 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Set up additional variables
+        run: |
+          cat output.env >> $GITHUB_ENV
+
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
@@ -19,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -89,9 +93,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
         run: |
-          gh pr review "${{ github.event.pull_request.number }}" \
-            --request-changes \
-            --body "❌ **Test pass rate ${{ steps.stats.outputs.pass_rate }}% is below the required 90% threshold.**
+          BODY="❌ **Test pass rate ${{ steps.stats.outputs.pass_rate }}% is below the required 90% threshold.**
 
           | Metric  | Count |
           |---------|-------|
@@ -99,5 +101,25 @@ jobs:
           | Failed  | ${{ steps.stats.outputs.failed }} |
           | Total   | ${{ steps.stats.outputs.total }} |
 
-          Please fix the failing tests before this PR can be merged." \
+          Please fix the failing tests before this PR can be merged."
+
+          gh pr review "${{ github.event.pull_request.number }}" \
+            --request-changes \
+            --body "$BODY" \
             --repo "${{ github.repository }}"
+
+      - name: Move Issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
+        run: |
+          PROJECT_ID=$(gh project list --owner "${{ github.repository_owner }}" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .id")
+          
+          ITEM_ID=$(gh project item-list "$PROJECT_ID" --owner "${{ github.repository_owner }}" --format json | jq -r --argjson n "$ISSUE_NUMBER" ".items[] | select(.content.number == $ISSUE_NUMBER) | .id")
+          
+          FIELD_ID=$(gh project field-list "$PROJECT_ID" --owner "${{ github.repository_owner }}" --format json | jq -r '.fields[] | select(.name == "Status") | .id')
+          
+          OPTION_ID=$(gh project field-list "$PROJECT_ID" --owner "${{ github.repository_owner }}" --format json | jq -r ".fields[] | select(.name == \"Status\") | .options[] | select(.name == \"Blocked\") | .id")
+          
+          # 4. Update the item status
+          gh project item-edit --id "$ITEM_ID" --project-id "$PROJECT_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
