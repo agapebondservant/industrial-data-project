@@ -29,7 +29,6 @@ jobs:
         run: |
           pip install --upgrade pip setuptools wheel
           pip install pytest pytest-json-report
-          if [ -f requirements.txt ]; then pip install --no-build-isolation -r requirements.txt; fi
 
       - name: Run tests
         id: run_tests

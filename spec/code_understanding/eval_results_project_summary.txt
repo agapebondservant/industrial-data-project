@@ -1,2 +1,7 @@
 ,metric_name,metric_description,baseline,candidate,score,reason,success
-0,Answer Relevancy,LLM-as-judge metric measuring relevancy to the user story.,"As a project manager, I want to have a one-paragraph summary of the project requirements so that I can quickly understand the project's objectives.","The industrial data platform is a comprehensive system that integrates with various data sources such as SCADA systems and mainframes to collect and process sensor data, supporting functionalities like reporting, email alerts, and a web dashboard.",1.0,"The score is 1.00 because the actual output perfectly addresses the project's objectives as requested, with no irrelevant statements found.",True
+0,Answer Relevancy,LLM-as-judge metric measuring relevancy to the user story.,"As a project manager, I want to have a one-paragraph summary of the project requirements so that I can quickly understand the project's objectives.
+
+Acceptance Criteria:
+- The document is a single paragraph.
+- It summarizes the key project requirements.
+- It is easily accessible to project stakeholders.","The project aims to summarize project objectives and detailed project objectives in a single, easily accessible paragraph.",1.0,"The score is 1.00 because the actual output perfectly addresses the input requirements without any irrelevant statements, meeting all the specified acceptance criteria.",True
