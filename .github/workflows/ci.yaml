@@ -36,7 +36,7 @@ jobs:
           TEST_DIR: 'tests'
         run: |
           pytest "$TEST_DIR" \
-            -m "refactoring" \
+            -m refactoring \
             --json-report \
             --json-report-file=report.json \
             --tb=short \
@@ -103,17 +103,12 @@ jobs:
 
           Please fix the failing tests before this PR can be merged."
 
-          gh pr review "${{ github.event.pull_request.number }}" \
-            --request-changes \
-            --body "$BODY" \
-            --repo "${{ github.repository }}"
-
-      - name: Move Issue
+      - name: Move Issue On Fail
         if: failure()
         env:
           GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
         run: |
-          PROJECT_ID=$(gh project list --owner "${{ github.repository_owner }}" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .id")
+          PROJECT_ID=$(gh project list --owner "${{ github.repository_owner }}" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .number")
           
           ITEM_ID=$(gh project item-list "$PROJECT_ID" --owner "${{ github.repository_owner }}" --format json | jq -r --argjson n "$ISSUE_NUMBER" ".items[] | select(.content.number == $ISSUE_NUMBER) | .id")
           

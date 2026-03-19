@@ -1,1 +1,1 @@
-The project aims to summarize project objectives and detailed project objectives in a single, easily accessible paragraph.
+The Industrial Data Platform is a comprehensive sensor data collection and processing system that supports reporting, email alerts, and a web dashboard, integrating with SCADA systems, mainframes, and other data sources.
