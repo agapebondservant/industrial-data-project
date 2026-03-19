@@ -18,7 +18,7 @@ jobs:
 
       - name: Set up additional variables
         run: |
-          cat output.env >> $GITHUB_ENV
+          cat .github/workflows/output.env >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v5

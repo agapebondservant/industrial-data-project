@@ -1,1 +1,1 @@
-The Industrial Data Platform project aims to create a system for collecting and processing industrial sensor data, integrating with various data sources like SCADA systems and mainframes, and supporting features such as reporting, email alerts, and a web dashboard.
+The Industrial Data Platform is an industrial sensor data collection and processing platform that supports reporting, email alerts, and a web dashboard, integrating with SCADA systems, mainframes, and other data sources.
