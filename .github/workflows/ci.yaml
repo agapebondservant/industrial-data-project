@@ -102,12 +102,7 @@ jobs:
           | Total   | ${{ steps.stats.outputs.total }} |
 
           Please fix the failing tests before this PR can be merged."
-
-      - name: Move Issue On Fail
-        if: failure()
-        env:
-          GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
-        run: |
+          
           PROJECT_ID=$(gh project list --owner "${{ github.repository_owner }}" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .number")
           
           ITEM_ID=$(gh project item-list "$PROJECT_ID" --owner "${{ github.repository_owner }}" --format json | jq -r --argjson n "$ISSUE_NUMBER" ".items[] | select(.content.number == $ISSUE_NUMBER) | .id")
@@ -116,5 +111,4 @@ jobs:
           
           OPTION_ID=$(gh project field-list "$PROJECT_ID" --owner "${{ github.repository_owner }}" --format json | jq -r ".fields[] | select(.name == \"Status\") | .options[] | select(.name == \"Blocked\") | .id")
           
-          # 4. Update the item status
           gh project item-edit --id "$ITEM_ID" --project-id "$PROJECT_ID" --field-id "$FIELD_ID" --single-select-option-id "$OPTION_ID"
