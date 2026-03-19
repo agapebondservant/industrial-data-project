@@ -10,15 +10,15 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: Set up additional variables
-        run: |
-          cat output.env >> $GITHUB_ENV
-
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+
+      - name: Set up additional variables
+        run: |
+          cat output.env >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v5
