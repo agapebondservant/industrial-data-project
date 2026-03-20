@@ -102,14 +102,10 @@ jobs:
           Please fix the failing tests before this PR can be merged."
           
           OWNER=$(gh api user --jq '.login')
-          
+
           PROJECT_ID=$(gh project list --owner "$OWNER" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .number")
 
-          FIELD_ID=$(gh project field-list "$PROJECT_ID" --owner "$OWNER" --format json | jq -r '.fields[] | select(.name == "Status") | .id')
-
-          OPTION_ID=$(gh project field-list "$PROJECT_ID" --owner "$OWNER" --format json | jq -r ".fields[] | select(.name == \"Status\") | .options[] | select(.name == \"Blocked\") | .id")
-
-          ITEM_ID=$(gh api graphql \
+          DATA=$(gh api graphql \
             -F owner="$OWNER" \
             -F num="$PROJECT_ID" \
             -f query='
@@ -119,10 +115,19 @@ jobs:
                     items(first: 100) {
                       nodes { id content { ... on Issue { number } } }
                     }
+                    field(name: "Status") {
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        options { id name }
+                      }
+                    }
                   }
                 }
-              }' \
-            --jq ".data.user.projectV2.items.nodes[] | select(.content.number == $ISSUE_NUMBER) | .id")
+              }')
+
+          ITEM_ID=$(echo "$DATA" | jq -r --argjson n "$ISSUE_NUMBER" '.data.user.projectV2.items.nodes[] | select(.content.number == $n) | .id')
+          FIELD_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.field.id')
+          OPTION_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.field.options[] | select(.name == "Blocked") | .id')
 
           gh project item-edit \
             --id "$ITEM_ID" \
