@@ -60,7 +60,7 @@ jobs:
           total   = summary.get("total",   0)
 
           pass_rate = (passed / total * 100) if total > 0 else 0.0
-          meets    = pass_rate >= 90.0
+          meets    = pass_rate >= 100.0
 
           print(f"Results: {passed} passed, {failed} failed, {error} errors / {total} total")
           print(f"Pass rate: {pass_rate:.1f}%  ({'✅ PASS' if meets else '❌ FAIL'})")
@@ -74,7 +74,7 @@ jobs:
               f.write(f"meets_threshold={'true' if meets else 'false'}\n")
           EOF
 
-      - name: Merge PR (pass rate ≥ 90%)
+      - name: Merge PR (pass rate ≥ 100%)
         if: steps.stats.outputs.meets_threshold == 'true'
         env:
           GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
@@ -86,12 +86,12 @@ jobs:
             --subject "Auto-merge: ${{ github.event.pull_request.title }}" \
             --body "Merged automatically — test pass rate: ${{ steps.stats.outputs.pass_rate }}% (${{ steps.stats.outputs.passed }}/${{ steps.stats.outputs.total }})"
 
-      - name: Request changes (pass rate < 90%)
+      - name: Request changes (pass rate < 100%)
         if: steps.stats.outputs.meets_threshold == 'false'
         env:
           GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
         run: |
-          BODY="❌ **Test pass rate ${{ steps.stats.outputs.pass_rate }}% is below the required 90% threshold.**
+          BODY="❌ **Test pass rate ${{ steps.stats.outputs.pass_rate }}% is below the required 100% threshold.**
 
           | Metric  | Count |
           |---------|-------|
@@ -145,3 +145,5 @@ jobs:
                   value: { singleSelectOptionId: $optionId }
                 }) { projectV2Item { id } }
               }'
+          
+          exit 1
