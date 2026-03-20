@@ -67,14 +67,14 @@ jobs:
           print(f"Results: {passed} passed, {failed} failed, {error} errors / {total} total")
           print(f"Pass rate: {pass_rate:.1f}%  ({'✅ PASS' if meets else '❌ FAIL'})")
 
-#          out = os.environ["GITHUB_OUTPUT"]
-#          with open(out, "a") as f:
-#              f.write(f"pass_rate={pass_rate:.2f}\n")
-#              f.write(f"passed={passed}\n")
-#              f.write(f"failed={failed}\n")
-#              f.write(f"total={total}\n")
-#              f.write(f"meets_threshold={'true' if meets else 'false'}\n")
-#          EOF
+          out = os.environ["GITHUB_OUTPUT"]
+          with open(out, "a") as f:
+              f.write(f"pass_rate={pass_rate:.2f}\n")
+              f.write(f"passed={passed}\n")
+              f.write(f"failed={failed}\n")
+              f.write(f"total={total}\n")
+              f.write(f"meets_threshold={'true' if meets else 'false'}\n")
+          EOF
 
       - name: Merge PR (pass rate ≥ 90%)
         if: steps.stats.outputs.meets_threshold == 'true'
