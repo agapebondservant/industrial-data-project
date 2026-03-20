@@ -32,10 +32,8 @@ jobs:
 
       - name: Run tests
         id: run_tests
-        env:
-          TEST_DIR: 'tests'
         run: |
-          pytest "$TEST_DIR" \
+          pytest "tests/test_${ISSUE_NUMBER}.py" \
             -m refactoring \
             --json-report \
             --json-report-file=report.json \
@@ -104,10 +102,16 @@ jobs:
           Please fix the failing tests before this PR can be merged."
           
           OWNER=$(gh api user --jq '.login')
+          
+          PROJECT_ID=$(gh project list --owner "$OWNER" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .number")
+
+          FIELD_ID=$(gh project field-list "$PROJECT_ID" --owner "$OWNER" --format json | jq -r '.fields[] | select(.name == "Status") | .id')
+
+          OPTION_ID=$(gh project field-list "$PROJECT_ID" --owner "$OWNER" --format json | jq -r ".fields[] | select(.name == \"Status\") | .options[] | select(.name == \"Blocked\") | .id")
 
           ITEM_ID=$(gh api graphql \
             -F owner="$OWNER" \
-            -F num="$PROJECT_NUMBER" \
+            -F num="$PROJECT_ID" \
             -f query='
               query($owner: String!, $num: Int!) {
                 user(login: $owner) {
@@ -123,5 +127,5 @@ jobs:
           gh project item-edit \
             --id "$ITEM_ID" \
             --project-id "$PROJECT_NUMBER" \
-            --field-id "$STATUS_FIELD_ID" \
-            --single-select-option-id "$BLOCKED_OPTION_ID"
+            --field-id "$FIELD_ID" \
+            --single-select-option-id "$OPTION_ID"
