@@ -126,6 +126,6 @@ jobs:
 
           gh project item-edit \
             --id "$ITEM_ID" \
-            --project-id "$PROJECT_NUMBER" \
+            --project-id "$PROJECT_ID" \
             --field-id "$FIELD_ID" \
             --single-select-option-id "$OPTION_ID"
