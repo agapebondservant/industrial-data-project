@@ -6,13 +6,13 @@ def pytest_addoption(parser):
     parser.addoption(
         "--test_data",
         action="store",
-        default="./temp/test_data.csv",
+        default="./tests/test_data.csv",
         help='Specify test data file path.'
     )
     parser.addoption(
         "--test_results",
         action="store",
-        default="./temp/test_results.csv",
+        default="./tests/test_results.csv",
         help='Specify test results file path.'
     )
 
