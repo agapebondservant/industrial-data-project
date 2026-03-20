@@ -1,0 +1,149 @@
+name: "Unit Test CI"
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Set up additional variables
+        run: |
+          cat .github/workflows/output.env >> $GITHUB_ENV
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install pytest pytest-json-report
+
+      - name: Run tests
+        id: run_tests
+        run: |
+          pytest "tests/test_${ISSUE_NUMBER}.py" \
+            -m refactoring \
+            --json-report \
+            --json-report-file=report.json \
+            --tb=short \
+            -q || true
+
+      - name: Calculate pass rate
+        id: stats
+        run: |
+          python3 - <<'EOF'
+          import json, os, sys
+
+          try:
+              with open("report.json") as f:
+                  report = json.load(f)
+          except FileNotFoundError:
+              print("ERROR: report.json not found — pytest may not have run.")
+              sys.exit(1)
+
+          summary = report.get("summary", {})
+          passed  = summary.get("passed",  0)
+          failed  = summary.get("failed",  0)
+          error   = summary.get("error",   0)
+          total   = summary.get("total",   0)
+
+          pass_rate = (passed / total * 100) if total > 0 else 0.0
+          meets    = pass_rate >= 100.0
+
+          print(f"Results: {passed} passed, {failed} failed, {error} errors / {total} total")
+          print(f"Pass rate: {pass_rate:.1f}%  ({'✅ PASS' if meets else '❌ FAIL'})")
+
+          out = os.environ["GITHUB_OUTPUT"]
+          with open(out, "a") as f:
+              f.write(f"pass_rate={pass_rate:.2f}\n")
+              f.write(f"passed={passed}\n")
+              f.write(f"failed={failed}\n")
+              f.write(f"total={total}\n")
+              f.write(f"meets_threshold={'true' if meets else 'false'}\n")
+          EOF
+
+      - name: Merge PR (pass rate ≥ 100%)
+        if: steps.stats.outputs.meets_threshold == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
+        run: |
+          echo "✅ Pass rate ${{ steps.stats.outputs.pass_rate }}% — merging PR #${{ github.event.pull_request.number }}..."
+          gh pr merge "${{ github.event.pull_request.number }}" \
+            --squash \
+            --repo "${{ github.repository }}" \
+            --subject "Auto-merge: ${{ github.event.pull_request.title }}" \
+            --body "Merged automatically — test pass rate: ${{ steps.stats.outputs.pass_rate }}% (${{ steps.stats.outputs.passed }}/${{ steps.stats.outputs.total }})"
+
+      - name: Request changes (pass rate < 100%)
+        if: steps.stats.outputs.meets_threshold == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.CODEAGENT_PAT }}
+        run: |
+          BODY="❌ **Test pass rate ${{ steps.stats.outputs.pass_rate }}% is below the required 100% threshold.**
+
+          | Metric  | Count |
+          |---------|-------|
+          | Passed  | ${{ steps.stats.outputs.passed }} |
+          | Failed  | ${{ steps.stats.outputs.failed }} |
+          | Total   | ${{ steps.stats.outputs.total }} |
+
+          Please fix the failing tests before this PR can be merged."
+          
+          OWNER=$(gh api user --jq '.login')
+
+          PROJECT_ID=$(gh project list --owner "$OWNER" --format json | jq -r ".projects[] | select(.title == \"$PROJECT_NAME\") | .number")
+
+          DATA=$(gh api graphql \
+            -F owner="$OWNER" \
+            -F num="$PROJECT_ID" \
+            -f query='
+              query($owner: String!, $num: Int!) {
+                user(login: $owner) {
+                  projectV2(number: $num) {
+                    id
+                    items(first: 100) {
+                      nodes { id content { ... on Issue { number } } }
+                    }
+                    field(name: "Status") {
+                      ... on ProjectV2SingleSelectField {
+                        id
+                        options { id name }
+                      }
+                    }
+                  }
+                }
+              }')
+
+          PROJECT_NODE_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.id')
+          ITEM_ID=$(echo "$DATA" | jq -r --argjson n "$ISSUE_NUMBER" '.data.user.projectV2.items.nodes[] | select(.content.number == $n) | .id')
+          FIELD_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.field.id')
+          OPTION_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.field.options[] | select(.name == "Blocked") | .id')
+
+          gh api graphql \
+            -F projectId="$PROJECT_NODE_ID" \
+            -F itemId="$ITEM_ID" \
+            -F fieldId="$FIELD_ID" \
+            -F optionId="$OPTION_ID" \
+            -f query='
+              mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                updateProjectV2ItemFieldValue(input: {
+                  projectId: $projectId
+                  itemId: $itemId
+                  fieldId: $fieldId
+                  value: { singleSelectOptionId: $optionId }
+                }) { projectV2Item { id } }
+              }'
+          
+          exit 1
