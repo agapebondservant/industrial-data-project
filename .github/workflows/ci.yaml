@@ -112,6 +112,7 @@ jobs:
               query($owner: String!, $num: Int!) {
                 user(login: $owner) {
                   projectV2(number: $num) {
+                    id
                     items(first: 100) {
                       nodes { id content { ... on Issue { number } } }
                     }
@@ -125,12 +126,22 @@ jobs:
                 }
               }')
 
+          PROJECT_NODE_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.id')
           ITEM_ID=$(echo "$DATA" | jq -r --argjson n "$ISSUE_NUMBER" '.data.user.projectV2.items.nodes[] | select(.content.number == $n) | .id')
           FIELD_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.field.id')
           OPTION_ID=$(echo "$DATA" | jq -r '.data.user.projectV2.field.options[] | select(.name == "Blocked") | .id')
 
-          gh project item-edit \
-            --id "$ITEM_ID" \
-            --project-id "$PROJECT_ID" \
-            --field-id "$FIELD_ID" \
-            --single-select-option-id "$OPTION_ID"
+          gh api graphql \
+            -F projectId="$PROJECT_NODE_ID" \
+            -F itemId="$ITEM_ID" \
+            -F fieldId="$FIELD_ID" \
+            -F optionId="$OPTION_ID" \
+            -f query='
+              mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                updateProjectV2ItemFieldValue(input: {
+                  projectId: $projectId
+                  itemId: $itemId
+                  fieldId: $fieldId
+                  value: { singleSelectOptionId: $optionId }
+                }) { projectV2Item { id } }
+              }'
