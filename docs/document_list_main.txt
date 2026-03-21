@@ -1,0 +1,18 @@
+Here is a list of documents that should be generated for this sprint:
+- Project Requirements (one-paragraph summary)
+- System Configuration Report
+- Architecture Report
+- Software Bill of Materials (SBOM)
+- Vulnerability Report
+- Endpoint Catalog
+- Architecture Technical Debt Index
+- Code Catalog
+- Import Analysis
+- Code Graphs
+- Dependency Analysis
+- Migration Path
+- Functional Requirements Doc
+- Technical Design Doc
+- Software Backlog Document
+- Migration Runbook
+- Deployment Guide
