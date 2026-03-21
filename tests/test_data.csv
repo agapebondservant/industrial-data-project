@@ -1,2 +1,7 @@
 "metric_name","metric_description","baseline","candidate","reference","score","reason","success"
-"Answer Relevancy","LLM-as-judge metric measuring relevancy to the user story.","As a project manager, I want to have a one-paragraph summary of the project requirements so that I can quickly understand the project's objectives.","The project aims to summarize key project requirements based on the project plan and requirements document. The summary is derived from the contents of project_plan.yaml and requirements.md, ensuring that it is concise and accessible to project stakeholders.","['']","1.0","The score is 1.00 because the actual output perfectly addresses the project's objectives as requested, with no irrelevant statements found.","True"
+"Answer Relevancy","LLM-as-judge metric measuring relevancy to the user story.","As a project manager, I want to have a one-paragraph summary of the project requirements so that I can quickly understand the project's objectives and scope.
+
+Acceptance Criteria:
+- The document is a one-paragraph summary.
+- The summary clearly outlines the project's objectives and scope.
+- The document is easily accessible to project stakeholders.","The industrial data platform is designed to collect and process sensor data, supporting reporting, email alerts, and a web dashboard. It integrates with SCADA systems, mainframes, and other data sources.","['']",1.0,"The score is 1.00 because the actual output perfectly addresses the input requirements with no irrelevant statements, meeting all the specified acceptance criteria.",True
