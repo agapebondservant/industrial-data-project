@@ -1,2 +1,2 @@
 name,outcome,error
-agents/sprint_planning/benchmark/artifacts/tests.py::test_benchmark,PASSED,
+agents/iteration_planning/benchmark/artifacts/tests.py::test_benchmark,PASSED,
