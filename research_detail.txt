@@ -1,0 +1,3 @@
+file_name: api_specifications.txt
+document_type: API Specifications
+reference_file_locations: api/openapi.yaml, README.md
