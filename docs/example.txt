@@ -1,0 +1,29 @@
+# OpenAPI Specification
+
+## Overview
+This document provides an OpenAPI-compatible API specification for the application.
+
+## Endpoints
+Detailed descriptions of the endpoints are provided below.
+
+### Endpoint 1
+- **Description**: Description of Endpoint 1.
+- **Request Format**: Example request format.
+- **Response Format**: Example response format.
+
+## Request and Response Formats
+Examples of request and response formats are provided below.
+
+### Request Example
+```json
+{
+  "key": "value"
+}
+```
+
+### Response Example
+```json
+{
+  "result": "success"
+}
+```
