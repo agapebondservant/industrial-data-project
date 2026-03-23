@@ -1,0 +1,3 @@
+# Industrial Data Platform Project Requirements Summary
+
+The **Industrial Data Platform** is a comprehensive solution for **collecting, processing, and analyzing industrial sensor data**, enabling real-time reporting, automated email alerts, and an interactive web dashboard. It integrates seamlessly with **SCADA systems, mainframes, and other data sources**, ensuring seamless data consolidation and analysis. Core functionalities include **interactive and batch processing modes**, **mainframe data import capabilities**, and a **sensor monitoring daemon** for continuous data acquisition. Prerequisites include **Python and pip**, with dependencies specified in `requirements.txt`, and a configurable setup via `platform.ini` for network-specific adjustments.
