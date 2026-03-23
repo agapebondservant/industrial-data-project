@@ -1,5 +1,6 @@
 import csv
 import pytest
+import json
 
 
 def pytest_addoption(parser):
@@ -19,7 +20,22 @@ def pytest_addoption(parser):
 
 def pytest_configure(config):
     config._test_results = []
+
     config.addinivalue_line("markers", "refactoring: mark test as target for refactoring.")
+
+
+def pytest_generate_tests(metafunc):
+    if "row" in metafunc.fixturenames:
+
+        test_data = metafunc.config.getoption("--test_data")
+
+        with open(test_data, 'r', encoding='utf-8') as f:
+
+            rows = json.load(f)
+
+        ids = [row.get("metric_name", str(i)) for i, row in enumerate(rows)]
+
+        metafunc.parametrize("row", rows, ids=ids)
 
 
 @pytest.hookimpl(hookwrapper=True)
@@ -30,8 +46,10 @@ def pytest_runtest_makereport(item, call):
 
     if report.when == 'call' or report.failed:
 
+        name = item.callspec.id if hasattr(item, "callspec") else item.nodeid
+
         item.config._test_results.append({
-            "name": item.nodeid,
+            "name": name,
             "outcome": report.outcome.upper(),
             "error": report.longreprtext if report.failed else ""
         })

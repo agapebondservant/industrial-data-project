@@ -1,2 +1,14 @@
-,metric_name,metric_description,baseline,candidate,score,reason,success
-0,Answer Relevancy,LLM-as-judge metric measuring relevancy to the user story.,"As a project manager, I want to have a one-paragraph summary of the project requirements so that I can quickly understand the project's objectives.","The industrial data platform is a comprehensive system designed for sensor data collection and processing. It supports key features such as reporting, email alerts, and a web dashboard, integrating seamlessly with various data sources including SCADA systems and mainframes.",1.0,"The score is 1.00 because the actual output perfectly addresses the project's objectives as requested, with no irrelevant statements found.",True
+[
+    {
+        "metric_name":"Answer Relevancy",
+        "metric_description":"LLM-as-judge metric measuring relevancy to the user story.",
+        "baseline":"As a project manager, I want to have a one-paragraph summary of the project requirements so that I can quickly understand the overall project scope and objectives.\n\nAcceptance Criteria:\n- The document is a one-paragraph summary.\n- It clearly outlines the project's main objectives.\n- It mentions the key functionalities of the industrial data platform.\n- It is concise and easily understandable.",
+        "candidate":"The Industrial Data Platform is designed to collect and process industrial sensor data, supporting reporting, email alerts, and a web dashboard. It integrates with SCADA systems, mainframes, and other data sources. The platform can be run in interactive or batch mode and includes features like sensor monitoring.",
+        "reference":[
+            ""
+        ],
+        "score":0.8,
+        "reason":"The score is 0.80 because the actual output largely meets the project's requirements by providing a one-paragraph summary that outlines the project's main objectives and key functionalities. However, it is not higher due to the presence of a statement about running in interactive or batch mode, which is not directly relevant to the project's main objectives or key functionalities as required by the acceptance criteria.",
+        "success":true
+    }
+]
