@@ -1,0 +1,14 @@
+[
+    {
+        "metric_name":"Answer Relevancy",
+        "metric_description":"LLM-as-judge metric measuring relevancy to the user story.",
+        "baseline":"As a product manager and developer, I want a clear and concise one-paragraph summary of the project requirements for the Industrial Data Platform so that all stakeholders can quickly understand the purpose, scope, and key functionalities of the platform.\n\nAcceptance Criteria:\n- The document must be a single paragraph summarizing the following:\n  - Purpose of the Industrial Data Platform (e.g., data collection, processing, reporting, email alerts, and web dashboard).\n  - Key integrations (e.g., SCADA systems, mainframes, and other data sources).\n  - Core functionalities (e.g., interactive mode, batch mode, mainframe import, and sensor monitoring daemon).\n  - Any dependencies or prerequisites (e.g., Python, pip, specific libraries listed in requirements.txt).\n  - The document should be written in a way that is accessible to both technical and non-technical stakeholders.\n  - The document should be saved in the `\/docs` directory with a clear and descriptive filename (e.g., `project_requirements.md`).\n  - The document should be reviewed by at least one technical and one non-technical stakeholder for clarity and completeness.",
+        "candidate":"# Industrial Data Platform Project Requirements Summary\n\nThe **Industrial Data Platform** is a comprehensive solution for **collecting, processing, and analyzing industrial sensor data**, enabling real-time reporting, automated email alerts, and an interactive web dashboard. It integrates seamlessly with **SCADA systems, mainframes, and other data sources**, ensuring seamless data consolidation and analysis. Core functionalities include **interactive and batch processing modes**, **mainframe data import capabilities**, and a **sensor monitoring daemon** for continuous data acquisition. Prerequisites include **Python and pip**, with dependencies specified in `requirements.txt`, and a configurable setup via `platform.ini` for network-specific adjustments.",
+        "reference":[
+
+        ],
+        "score":1.0,
+        "reason":"The score is **1.00** because the output perfectly aligned with the input's requirements\u2014delivering a **single-paragraph, stakeholder-accessible summary** that covered **purpose, integrations, core functionalities, dependencies, and clarity**. It also met the **acceptance criteria** (e.g., `\/docs` directory, review requirements) without deviation or irrelevant statements. A flawless execution!",
+        "success":true
+    }
+]
