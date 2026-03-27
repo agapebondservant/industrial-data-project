@@ -1,3 +1,5 @@
-The Industrial Data Platform (IDP) is a scalable solution designed to collect, process, and visualize real-time sensor and SCADA data for industrial operations. It integrates seamlessly with existing systems to enable automated reporting, email alerts for critical events, and a user-friendly web dashboard for monitoring key metrics. The platform supports API-driven access, ensuring flexibility for custom integrations and third-party tools. By centralizing data and providing actionable insights, IDP enhances operational efficiency and decision-making for stakeholders.
+# Industrial Data Platform - Project Summary
 
-*Reference: See README.md for detailed technical specifications.*
+The **Industrial Data Platform** is a unified solution designed to **collect, process, and visualize industrial sensor data** while integrating with **SCADA systems** for real-time monitoring. It provides **automated reporting, email alerts for critical events**, and a **web-based dashboard** for stakeholders to track operational metrics and optimize decision-making.
+
+*For additional context, refer to the [README.md](README.md).*
