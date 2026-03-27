@@ -1,14 +1,9 @@
 [
-    {
-        "metric_name":"Answer Relevancy",
-        "metric_description":"LLM-as-judge metric measuring relevancy to the user story.",
-        "baseline":"As a product manager\/technical lead, I want a one-paragraph summary of the project requirements so that stakeholders can quickly understand the purpose, scope, and key features of the Industrial Data Platform.\n\nAcceptance Criteria:\n- The document must include a **clear, concise one-paragraph summary** of the project's purpose, scope, and key functionalities.\n- The summary must align with the **README's description** (e.g., sensor data collection, SCADA integration, reporting, email alerts, and web dashboard).\n- The document must be **version-controlled** and stored in the `\/docs` directory.\n- The document must be **reviewed by at least one technical stakeholder** before finalization.\n- The document must include a **reference to the README** for additional context.",
-        "candidate":"The **Industrial Data Platform** is a unified solution designed to **collect, process, and visualize industrial sensor data** while integrating with **SCADA systems** for real-time monitoring. It provides **automated reporting, email alerts for critical events**, and a **web-based dashboard** for stakeholders to track operational metrics and optimize decision-making.\n\n*For additional context, refer to the [README.md](README.md).*",
-        "reference":[
-            ""
-        ],
-        "score":1.0,
-        "reason":"The score is **1.00** because the output perfectly met all requirements: it provided a **clear, concise one-paragraph summary** of the project\u2019s purpose, scope, and key features (sensor data collection, SCADA integration, reporting, email alerts, and web dashboard), aligned with the README\u2019s description, and included a **reference to the README** for context. The response was **directly relevant**, **well-structured**, and **fully compliant** with the acceptance criteria\u2014no irrelevant statements or deviations were present. Well done!",
-        "success":true
-    }
+  {
+    "metric_name": "Answer Relevancy",
+    "metric_description": "LLM-as-judge metric measuring relevancy to the user story.",
+    "score": 0.65,
+    "reason": "The candidate response provides a comprehensive overview of the project but deviates from the baseline requirement of a **one-paragraph summary**. While it covers purpose, scope, and key components, it lacks explicit mention of **email alerts** and **web dashboard** (as per the baseline). Additionally, version control and stakeholder review are not explicitly stated. The response is detailed but overly verbose for the requested format.",
+    "success": false
+  }
 ]
