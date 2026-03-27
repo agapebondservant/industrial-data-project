@@ -1,5 +1,5 @@
-# Industrial Data Platform Project Summary
+# Industrial Data Platform (IDP) Project Summary
 
-The Industrial Data Platform is a scalable, hybrid-cloud solution designed to centralize real-time industrial IoT, SCADA, and operational data for analytics, predictive maintenance, and business intelligence. It integrates sensor data collection, legacy system ingestion, and real-time processing (via Kafka/Flink) to enable automated reporting, email alerts, and a web-based dashboard for stakeholders. Built with compliance (GDPR/ISO 27001) and scalability in mind, the platform reduces data silos by 70% and improves operational efficiency by 20% through predictive analytics and ML-driven insights.
+The **Industrial Data Platform (IDP)** is a unified solution for collecting, processing, and analyzing real-time and historical industrial data from sensors, SCADA systems, and enterprise applications. It enables predictive maintenance, process optimization, and actionable insights through real-time monitoring, advanced analytics, and customizable dashboards. Built on scalable cloud infrastructure with robust security and compliance (GDPR, ISO 27001), the platform integrates tools like Kafka, Spark, and Tableau to deliver measurable outcomes, including reduced downtime and improved energy efficiency.
 
-For additional context, refer to the [README.md].
+For further details, refer to the [README.md](README.md).
