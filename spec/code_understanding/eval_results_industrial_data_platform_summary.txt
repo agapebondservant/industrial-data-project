@@ -1,0 +1,14 @@
+[
+    {
+        "metric_name":"Answer Relevancy",
+        "metric_description":"LLM-as-judge metric measuring relevancy to the user story.",
+        "baseline":"As a product manager\/technical lead, I want a one-paragraph summary of the project requirements so that stakeholders can quickly understand the purpose, scope, and key features of the Industrial Data Platform.\n\nAcceptance Criteria:\n- The document must include a **clear, concise one-paragraph summary** of the project's purpose, scope, and key functionalities.\n- The summary must align with the **README's description** (e.g., sensor data collection, SCADA integration, reporting, email alerts, and web dashboard).\n- The document must be **version-controlled** and stored in the `\/docs` directory.\n- The document must be **reviewed by at least one technical stakeholder** before finalization.\n- The document must include a **reference to the README** for additional context.",
+        "candidate":"The Industrial Data Platform (IDP) is a scalable solution designed to collect, process, and visualize real-time sensor and SCADA data for industrial operations. It integrates seamlessly with existing systems to enable automated reporting, email alerts for critical events, and a user-friendly web dashboard for monitoring key metrics. The platform supports API-driven access, ensuring flexibility for custom integrations and third-party tools. By centralizing data and providing actionable insights, IDP enhances operational efficiency and decision-making for stakeholders.\n\n*Reference: See README.md for detailed technical specifications.*",
+        "reference":[
+            ""
+        ],
+        "score":1.0,
+        "reason":"The score is **1.00** because the output perfectly aligned with the input's requirements\u2014delivering a **clear, concise one-paragraph summary** that covered purpose, scope, and key features (sensor data, SCADA, reporting, alerts, dashboard) while explicitly referencing the README. It also implicitly addressed version control (via `\/docs` storage) and stakeholder review (by being a polished, stakeholder-ready document). No irrelevant statements were present, and all acceptance criteria were met with precision. Well done\u2014this is exactly what was asked for!",
+        "success":true
+    }
+]
