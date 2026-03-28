@@ -1,0 +1,27 @@
+# Multi-Agent System Architecture Overview
+
+## 1. System Context Diagram
+The system consists of:
+- **Agents**: Autonomous entities performing specialized tasks (e.g., data processing, decision-making).
+- **External Systems**: Interfaces with third-party APIs, databases, or legacy systems.
+- **Data Flows**: Bidirectional communication between agents and external systems.
+
+*(Embedded diagram placeholder: Mermaid.js or PNG to be added.)*
+
+## 2. Key Design Decisions
+- **Decentralized Control**: Agents operate autonomously with minimal central coordination.
+- **Modularity**: Components are loosely coupled for scalability and maintainability.
+- **Fault Tolerance**: Redundancy and self-healing mechanisms are implemented.
+
+## 3. Glossary
+| Term          | Definition                                                                 |
+|---------------|-----------------------------------------------------------------------------|
+| **Agent**     | A software entity performing tasks based on predefined rules or ML models. |
+| **Workflow**  | A sequence of tasks orchestrated by agents to achieve a goal.              |
+| **Orchestrator** | A central component managing agent interactions and resource allocation. |
+
+## 4. Review Status
+- **Pending**: Architect review required for accuracy.
+
+---
+*Note: Replace placeholders with actual system details once available.*
