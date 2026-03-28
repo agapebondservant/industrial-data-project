@@ -1,0 +1,2 @@
+Requirements:
+- Migrate a Java 8 app with 100,000 lines of code to Java 21 in order to host the app on a RHEL 10 environment. Assume that the Java 8 app is an old app with no test coverage and limited understanding of how it works.
