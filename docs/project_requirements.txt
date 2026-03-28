@@ -1,0 +1,3 @@
+# Project Requirements Summary for Industrial Data Platform
+
+*The Industrial Data Platform is a scalable system for real-time and batch processing of industrial sensor, SCADA, and mainframe data, enabling monitoring, alerting, and reporting via a web dashboard. Key features include MQTT/REST data ingestion, automated batch processing, customizable email/SMS alerts, and integration with existing industrial protocols. The platform excludes predictive analytics or machine learning capabilities but supports Python 3.8+, MQTT, and PostgreSQL. Target users are developers, QA engineers, and operations teams responsible for data pipeline maintenance and monitoring.*

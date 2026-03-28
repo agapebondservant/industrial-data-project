@@ -31,17 +31,7 @@ def pytest_generate_tests(metafunc):
 
         with open(test_data, 'r', encoding='utf-8') as f:
 
-            content = f.read()
-
-        try:
-
-            rows = json.loads(content)
-
-        except json.JSONDecodeError:
-
-            import io
-
-            rows = list(csv.DictReader(io.StringIO(content)))
+            rows = json.load(f)
 
         ids = [row.get("metric_name", str(i)) for i, row in enumerate(rows)]
 
