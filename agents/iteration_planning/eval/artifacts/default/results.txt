@@ -1,0 +1,2 @@
+metric_name,metric_description,baseline,candidate,reference,score,reason,success
+"Default","Default","","","",1.0,"",True
