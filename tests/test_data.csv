@@ -1,12 +1,2 @@
-[
-    {
-      "metric_name": "Answer Relevancy",
-      "metric_description": "LLM-as-judge metric measuring relevancy to the user story.",
-      "baseline": "As a product manager/technical lead, I want a one-paragraph summary of the project requirements so that stakeholders can quickly understand the purpose, scope, and key features of the Industrial Data Platform.\n\nAcceptance Criteria:\n- The document must include a **clear, concise one-paragraph summary** of the project's purpose, scope, and key functionalities.\n- The summary must align with the **README's description** (e.g., sensor data collection, SCADA integration, reporting, email alerts, and web dashboard).\n- The document must be **version-controlled** and stored in the `/docs` directory.\n- The document must be **reviewed by at least one technical stakeholder** before finalization.\n- The document must include a **reference to the README** for additional context.",
-      "candidate": "<The content of the file at /Users/tolaawofolu/eclipse-workspace/ai/usaf/workflows/examples/multi-agent/tmp/temp/industrial_data_platform_summary.txt>",
-      "reference": [],
-      "score": 0.0,
-      "reason": "",
-      "success": false
-    }
-  ]
+metric_name,metric_description,baseline,candidate,reference,score,reason,success
+"Default","Default","","","",1.0,"",True

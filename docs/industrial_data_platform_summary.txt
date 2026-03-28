@@ -1,7 +1,1 @@
-# Industrial Data Platform (IDP) - Project Requirements Summary
-
-The Industrial Data Platform (IDP) is a centralized system designed to **collect, process, and analyze industrial sensor data** from diverse sources, including **SCADA systems, mainframes, and IoT devices**. It provides **real-time monitoring, automated reporting, and email alerts** to enable data-driven decision-making, while supporting a **web-based dashboard** for visualization and operational insights. The platform integrates seamlessly with existing industrial infrastructure, ensuring scalability, security, and compliance with industry standards. For detailed technical specifications, refer to the [README.md](file:///Users/tolaawofolu/eclipse-workspace/ai/usaf/workflows/examples/multi-agent/tmp/README.md).
-
-**Version:** 1.0
-**Last Updated:** [Insert Date]
-**Prepared By:** [Your Name/Team]
+The Industrial Data Platform is a comprehensive solution for collecting, processing, and analyzing industrial sensor data from diverse sources, including SCADA systems and mainframes. It consolidates data to enable real-time monitoring, reporting, and decision-making through features such as email alerts and a web dashboard. The platform supports both interactive and batch processing modes, along with specialized scripts for mainframe imports and sensor monitoring, ensuring seamless integration and operational efficiency.
