@@ -1,0 +1,3 @@
+Project Requirements Summary for the Industrial Data Platform
+
+The **Industrial Data Platform** is designed to centralize real-time sensor data collection, SCADA system integration, and automated reporting for industrial operations. Key functionalities include **data ingestion from IoT/sensor devices**, **real-time monitoring via a web dashboard**, **customizable email alerts for anomalies**, and **generative reporting for operational insights**. This platform ensures seamless interoperability with existing industrial infrastructure while providing stakeholders with actionable analytics to optimize efficiency and reduce downtime. For additional context, refer to the [README](README.md).

@@ -1,0 +1,14 @@
+[
+    {
+        "metric_name":"Answer Relevancy",
+        "metric_description":"LLM-as-judge metric measuring relevancy to the user story.",
+        "baseline":"As a product manager\/technical lead, I want a one-paragraph summary of the project requirements so that stakeholders can quickly understand the purpose, scope, and key features of the Industrial Data Platform.\n\nAcceptance Criteria:\n- The document must include a **clear, concise one-paragraph summary** of the project's purpose, scope, and key functionalities.\n- The summary must align with the **README's description** (e.g., sensor data collection, SCADA integration, reporting, email alerts, and web dashboard).\n- The document must be **version-controlled** and stored in the `\/docs` directory.\n- The document must be **reviewed by at least one technical stakeholder** before finalization.\n- The document must include a **reference to the README** for additional context.",
+        "candidate":"The **Industrial Data Platform** is designed to centralize real-time sensor data collection, SCADA system integration, and automated reporting for industrial operations. Key functionalities include **data ingestion from IoT\/sensor devices**, **real-time monitoring via a web dashboard**, **customizable email alerts for anomalies**, and **generative reporting for operational insights**. This platform ensures seamless interoperability with existing industrial infrastructure while providing stakeholders with actionable analytics to optimize efficiency and reduce downtime. For additional context, refer to the [README](README.md).",
+        "reference":[
+
+        ],
+        "score":1.0,
+        "reason":"The score is **1.00** because the output perfectly aligned with the input's requirements\u2014delivering a **clear, concise one-paragraph summary** that covered **purpose, scope, and key features** (sensor data, SCADA, reporting, alerts, dashboard) while explicitly referencing the README. It also implicitly addressed version control (via `\/docs` storage) and stakeholder review (by being a polished, professional summary). No irrelevant statements were present, and the response was **precise, actionable, and fully compliant** with all acceptance criteria. Well done!",
+        "success":true
+    }
+]
