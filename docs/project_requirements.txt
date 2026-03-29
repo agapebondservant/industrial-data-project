@@ -1,7 +1,7 @@
-# Project Requirements: Industrial Data Platform
+# Industrial Data Platform - Project Requirements
 
 ## Summary
-The Industrial Data Platform is a system designed for collecting, processing, and reporting data from industrial sensors, SCADA systems, and mainframes. It provides real-time monitoring, email alerts, and a web dashboard for visualization, enabling efficient data-driven decision-making in industrial environments.
+The Industrial Data Platform is a system designed to collect, process, and report data from industrial sensors, SCADA systems, and mainframes. It provides real-time monitoring, email alerts, and a web dashboard for visualization, enabling efficient data-driven decision-making in industrial environments.
 
 ## Key Features
 - Real-time monitoring of industrial sensors and SCADA systems
@@ -12,8 +12,8 @@ The Industrial Data Platform is a system designed for collecting, processing, an
 - Sensor monitoring daemon for MQTT-based communication
 
 ## Scope Boundaries
-- Does not include predictive analytics or machine learning capabilities
-- Focuses on data collection, processing, and reporting only
+- This platform does **not** include predictive analytics or machine learning capabilities.
+- The platform focuses on data collection, processing, and reporting, not on advanced analytics.
 
 ## Dependencies
 - Python 3.8+
