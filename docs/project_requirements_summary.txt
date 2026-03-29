@@ -1,0 +1,3 @@
+### Project Requirements Summary
+
+This platform is designed to **collect and process industrial sensor data**, providing a centralized solution for monitoring and managing real-time operational metrics. Key features include **automated reporting**, **email alerts for critical events**, and an **interactive web dashboard** for visualization and analysis. The system integrates seamlessly with **SCADA systems** and **mainframes**, enabling comprehensive data aggregation from diverse industrial sources. By supporting batch and real-time processing, the platform ensures scalability and reliability for large-scale industrial environments.
