@@ -1,3 +1,11 @@
 [
-
+    {
+        "metric_name":"Answer Relevancy",
+        "metric_description":"LLM-as-judge metric measuring relevancy to the user story.",
+        "baseline":"[PLACEHOLDER: Content of industrial_data_platform_summary.txt]",
+        "candidate":"As a product manager, developer, and operator, I want a clear and concise one-paragraph summary of the Industrial Data Platform's project requirements so that I can quickly understand the platform's purpose, scope, and key features without needing to review the entire codebase or documentation.",
+        "score":1.0,
+        "reason":"The score is **1.00** because the output perfectly aligned with the input\u2014no irrelevant statements were detected, and the response was **fully relevant, precise, and comprehensive**. Well done! This level of accuracy is exactly what you want in a summary. Keep it up!",
+        "success":true
+    }
 ]
