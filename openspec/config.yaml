@@ -1,0 +1,26 @@
+schema: spec-driven
+
+context: |
+  Current Tech Stack:
+    - Language: Python 3 (legacy codebase)
+    - Architecture: Monolithic (assumed based on context)
+    - Libraries/Frameworks: Standard Python libraries (e.g., Flask, Django, or similar)
+    - Testing: Legacy testing frameworks (e.g., unittest, pytest)
+    - Style: PEP 8 compliant, legacy conventions
+  
+  Targeted Tech Stack (Minimal Requirements):
+    - Language: Python 3 (same architecture as current)
+    - Libraries/Frameworks: Minimal updates to support design (e.g., type hints, modern Python 3.8+ features)
+    - Testing: Pytest for unit tests (if not already in use)
+    - Style: PEP 8 compliance, minimal refactoring for readability
+    - Tooling: No changes to build configuration, dependency manifests, or CI/CD pipelines
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always include a "Non-goals" section
+#     tasks:
+#       - Break tasks into chunks of max 2 hours

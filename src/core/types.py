@@ -54,7 +54,7 @@ class DataPoint:
             result = cmp(self.tag, other.tag)
         return result
 
-    def __nonzero__(self):
+    def __bool__(self):
         """A data point is 'truthy' when its quality code indicates good
         data (OPC quality >= 192)."""
         return self.quality >= 192
@@ -75,14 +75,12 @@ class DataPoint:
         )
 
 
-class SensorReading(object):
+class SensorReading(object, metaclass=SensorMeta):
     """Base class for typed sensor readings.
 
     Subclasses set ``sensor_type`` and get registered automatically so
     the protocol layer can map a raw type byte to the right class.
     """
-
-    __metaclass__ = SensorMeta
 
     sensor_type = None          # subclasses override
 
@@ -150,19 +148,19 @@ class LargeCounter(object):
     32-bit builds where plain ``int`` rolls over at 2**31.
     """
 
-    MAX_VALUE = 18446744073709551615L   # 2**64 - 1
+    MAX_VALUE = 18446744073709551615   # 2**64 - 1
 
-    def __init__(self, initial=0L):
-        if not isinstance(initial, (int, long)):
+    def __init__(self, initial=0):
+        if not isinstance(initial, int):
             raise TypeError("counter value must be an integer, got %s" % type(initial).__name__)
-        self._value = long(initial)
+        self._value = int(initial)
 
     @property
     def value(self):
         return self._value
 
-    def increment(self, amount=1L):
-        self._value = (self._value + long(amount)) % (self.MAX_VALUE + 1L)
+    def increment(self, amount=1):
+        self._value = (self._value + int(amount)) % (self.MAX_VALUE + 1)
 
     def __repr__(self):
         return "LargeCounter(%dL)" % self._value
@@ -183,17 +181,17 @@ def sort_data_points(points):
 
 def is_string(value):
     """Return True if *value* is any kind of string (byte or unicode)."""
-    return isinstance(value, basestring)
+    return isinstance(value, str)
 
 
 def is_text(value):
     """Return True if *value* is a unicode string."""
-    return isinstance(value, unicode)
+    return isinstance(value, str)
 
 
 def is_binary(value):
     """Return True if *value* is a byte string."""
-    return isinstance(value, str) and not isinstance(value, unicode)
+    return isinstance(value, str) and not isinstance(value, str)
 
 
 def register_view(raw_data, offset, length):
