@@ -82,8 +82,8 @@ def main():
             assert len(record) == 40, "Record length %d != 40" % len(record)
             f.write(record)
 
-    print("Wrote %d records (%d bytes) to %s" % (
-        len(RECORDS), len(RECORDS) * 40, OUTPUT_PATH))
+    print(("Wrote %d records (%d bytes) to %s" % (
+        len(RECORDS), len(RECORDS) * 40, OUTPUT_PATH)))
 
 
 if __name__ == "__main__":
